@@ -1,55 +1,71 @@
 import { useNavigate } from 'react-router-dom';
+import {useEffect, useState} from 'react';
 import useInView from '../hooks/useInView';
 
-function Projekte() {
+function Projekte({ setActiveSection }) {
     const [ref, inView] = useInView();
+
+    useEffect(() => {
+        if (inView) {
+            setActiveSection('projekte');
+        }
+    }, [inView, setActiveSection]);
+
     const navigate = useNavigate();
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const projekte = [
         {
-            title: 'Bundesliga Dashboard',
-            desc: 'Live Bundesliga Tabelle mit echten Daten von OpenLigaDB. Gebaut mit React und der kostenlosen OpenLigaDB API.',
-            tech: ['React', 'OpenLigaDB API'],
-            route: '/bundesliga',
+            title: 'Fussball Scorings',
+            desc: 'Live Fussball Tabellen, Spieltage und mehr mit echten Daten von OpenLigaDB',
+            route: '/footballScorings',
             emoji: '⚽',
-        }
+        },
+        {
+            title: 'Eigener KI Chatbot',
+            desc: 'Gemini-powered Chatbot – in Entwicklung',
+            route: '/chatbot',
+            emoji: '🤖',
+        },
     ];
 
     return (
         <section id="projekte" ref={ref} style={styles.section}>
-            <div style={{ ...styles.content, opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(40px)', transition: 'all 0.8s ease' }}>
+            <div style={{ ...styles.content, opacity: inView ? 1 : 0, transition: 'opacity 0.6s ease' }}>
                 <h2 style={styles.title}>Projekte</h2>
-                <div style={styles.grid}>
-                    {projekte.map((projekt, i) => (
-                        <div
-                            key={projekt.title}
-                            style={{
-                                ...styles.card,
-                                transitionDelay: `${i * 0.15}s`,
-                                opacity: inView ? 1 : 0,
-                                transform: inView ? 'translateY(0)' : 'translateY(40px)',
-                                transition: `all 0.8s ease ${i * 0.15}s`,
-                            }}
-                            onClick={() => navigate(projekt.route)}
-                        >
-                            <span style={styles.cardEmoji}>{projekt.emoji}</span>
-                            <h3 style={styles.cardTitle}>{projekt.title}</h3>
-                            <p style={styles.cardDesc}>{projekt.desc}</p>
-                            <div style={styles.techRow}>
-                                {projekt.tech.map(t => (
-                                    <span key={t} style={styles.techBadge}>{t}</span>
-                                ))}
-                            </div>
-                            <p style={styles.link}>→ Öffnen</p>
-                        </div>
-                    ))}
+                <p style={styles.subtitle}>Hier probiere ich Sachen aus und versuchen meine Skills zu erweitern ;)</p>
 
-                    <div style={{ ...styles.cardEmpty, opacity: inView ? 1 : 0, transition: 'all 0.8s ease 0.3s' }}>
-                        <span style={styles.cardEmoji}>🤖</span>
-                        <h3 style={styles.cardTitle}>KI Chatbot</h3>
-                        <p style={styles.cardDesc}>Gemini-powered Chatbot – in Entwicklung.</p>
-                        <span style={styles.comingSoon}>Coming soon</span>
-                    </div>
+                <div style={styles.grid}>
+                    {projekte.map((projekt, i) => {
+                        const isHovered = hoveredIndex === i;
+
+                        return (
+                            <div
+                                key={projekt.title}
+                                style={{
+                                    ...styles.card,
+                                    opacity: inView ? 1 : 0,
+                                    transform: inView
+                                        ? (isHovered ? 'translateY(0) scale(1.02)' : 'translateY(0)')
+                                        : 'translateY(30px)',
+                                    borderColor: isHovered ? '#5dcaa5' : '#1a1a2e',
+                                    boxShadow: isHovered ? '0 10px 30px rgba(93, 202, 165, 0.1)' : 'none',
+                                    transition: isHovered
+                                        ? 'all 0.3s ease'
+                                        : `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.15}s`,
+                                }}
+                                onClick={() => navigate(projekt.route)}
+                                onMouseEnter={() => setHoveredIndex(i)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                            >
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                    <span style={styles.cardEmoji}>{projekt.emoji}</span>
+                                </div>
+                                <h3 style={styles.cardTitle}>{projekt.title}</h3>
+                                <p style={styles.cardDesc}>{projekt.desc}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
@@ -58,56 +74,59 @@ function Projekte() {
 
 const styles = {
     section: {
-        minHeight: '100vh',
+        minHeight: '90vh',
         backgroundColor: '#0f0f1a',
         display: 'flex',
         alignItems: 'center',
-        padding: '80px 10%',
+        padding: 'clamp(40px, 8vw, 80px) clamp(20px, 5vw, 10%)',
     },
     content: { width: '100%' },
     title: {
-        fontSize: '36px', fontWeight: '600',
-        color: '#fff', marginBottom: '48px',
+        fontSize: 'clamp(24px, 6vw, 36px)',
+        fontWeight: '600',
+        color: '#fff',
+        marginBottom: 'clamp(15px, 3vw, 25px)',
+    },
+    subtitle: {
+        fontSize: 'clamp(14px, 3vw, 16px)',
+        color: '#888',
+        marginBottom: 'clamp(25px, 5vw, 35px)',
+        maxWidth: '600px',
     },
     grid: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '24px',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(250px, 80vw, 400px), 1fr))',
+        gap: 'clamp(16px, 4vw, 24px)',
     },
     card: {
         backgroundColor: '#13131f',
         border: '1px solid #1a1a2e',
         borderRadius: '16px',
-        padding: '32px',
+        padding: 'clamp(20px, 5vw, 32px)',
         cursor: 'pointer',
     },
-    cardEmpty: {
-        backgroundColor: '#13131f',
-        border: '1px dashed #2a2a4a',
-        borderRadius: '16px',
-        padding: '32px',
+    cardEmoji: {
+        fontSize: 'clamp(24px, 5vw, 32px)',
+        marginBottom: '16px',
+        display: 'block'
     },
-    cardEmoji: { fontSize: '32px', marginBottom: '16px', display: 'block' },
     cardTitle: {
-        fontSize: '18px', fontWeight: '600',
-        color: '#fff', marginBottom: '8px',
+        fontSize: 'clamp(16px, 3vw, 18px)',
+        fontWeight: '600',
+        color: '#fff',
+        marginBottom: '8px',
     },
     cardDesc: {
-        fontSize: '14px', color: '#666',
-        lineHeight: '1.7', marginBottom: '16px',
-    },
-    techRow: { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' },
-    techBadge: {
-        backgroundColor: '#1a1a2e', color: '#5dcaa5',
-        border: '1px solid #2a2a4a',
-        padding: '4px 12px', borderRadius: '20px', fontSize: '12px',
+        fontSize: 'clamp(13px, 2.5vw, 14px)',
+        color: '#666',
+        lineHeight: '1.7',
+        marginBottom: '16px',
     },
     link: {
-        color: '#5dcaa5', fontWeight: '600', fontSize: '14px',
-    },
-    comingSoon: {
-        backgroundColor: '#1a1a2e', color: '#555',
-        padding: '4px 12px', borderRadius: '20px', fontSize: '12px',
+        color: '#5dcaa5',
+        fontWeight: '600',
+        fontSize: 'clamp(12px, 2vw, 14px)',
+        marginTop: 'auto',
     },
 };
 

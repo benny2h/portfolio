@@ -1,11 +1,31 @@
-function Navbar({ scrollTo }) {
+function Navbar({ scrollTo, activeSection }) {
+    const links = ['about', 'skills', 'projekte', 'kontakt'];
+    const labels = { about: 'About', skills: 'Skills', projekte: 'Projekte', kontakt: 'Kontakt' };
+
     return (
         <nav style={styles.nav}>
             <div style={styles.links}>
-                <button style={styles.link} onClick={() => scrollTo('about')}>About</button>
-                <button style={styles.link} onClick={() => scrollTo('skills')}>Skills</button>
-                <button style={styles.link} onClick={() => scrollTo('projekte')}>Projekte</button>
-                <button style={styles.contact} onClick={() => scrollTo('kontakt')}>Kontakt</button>
+                {links.map((id, index) => {
+                    const isActive = activeSection === id;
+                    return (
+                        <div key={id} style={styles.itemWrapper}>
+                            <button
+                                onClick={() => scrollTo(id)}
+                                style={{
+                                    ...styles.link,
+                                    color: isActive ? '#5dcaa5' : '#aaa',
+                                    fontSize: isActive ? '16px' : '14px',
+                                    fontWeight: isActive ? '800' : '600',
+                                    textShadow: isActive ? '0 0 12px #5dcaa5aa' : 'none',
+                                    transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
+                                    transition: 'all 0.3s ease',
+                                }}
+                            >
+                                {labels[id]}
+                            </button>
+                        </div>
+                    );
+                })}
             </div>
         </nav>
     );
@@ -16,22 +36,33 @@ const styles = {
         position: 'fixed',
         top: 0, left: 0, right: 0,
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        padding: '20px 48px',
+        padding: 'clamp(12px, 3vw, 20px) clamp(10px, 3vw, 50px)',
         backgroundColor: '#0f0f1a',
+        zIndex: 1000,
     },
-    logo: { color: '#fff', fontWeight: '600', fontSize: '18px' },
-    links: { display: 'flex', alignItems: 'center', gap: '32px' },
+    links: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: 'clamp(6px, 2vw, 12px)',
+    },
+    itemWrapper: {
+        display: 'flex',
+        alignItems: 'center',
+    },
     link: {
-        background: 'none', border: 'none',
-        color: '#aaa', fontSize: '14px', cursor: 'pointer',
-    },
-    contact: {
-        backgroundColor: '#fff', color: '#0f0f1a',
-        border: 'none', padding: '10px 22px',
-        borderRadius: '24px', fontSize: '14px',
-        fontWeight: '500', cursor: 'pointer',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '4px',
+        padding: 'clamp(4px, 1vw, 20px)',
+        fontSize: 'clamp(12px, 3vw, 16px)',
     },
 };
 

@@ -6,7 +6,7 @@ function useInView() {
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => { if (entry.isIntersecting) setInView(true); },
+            ([entry]) => { setInView(entry.isIntersecting); },
             { threshold: 0.2 }
         );
         if (ref.current) observer.observe(ref.current);
