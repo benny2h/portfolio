@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import useInView from "../hooks/useInView";
 
 function Hero({setActiveSection}) {
-    const [ref, inView] = useInView();
+    const [inView] = useInView();
 
     useEffect(() => {
         if (inView) {
