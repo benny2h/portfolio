@@ -12,6 +12,12 @@ const MODES = [
 
 const MAX_MATCHDAY = 34;
 
+// JETZT NEU: Hier steuerst du direkt im Frontend, was im Portfolio sichtbar ist!
+const ALLOWED_SPORTS = [
+    { name: 'Fußball', season: '2025' },
+    { name: 'Handball', season: '2025' }
+];
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 function SportScorings() {
@@ -34,7 +40,7 @@ function SportScorings() {
     const [loading, setLoading] = useState(false);
     const [error, setError]     = useState(null);
 
-    // ── Load all leagues once ──
+    // ── Load all leagues once direkt von OpenLigaDB ──
     useEffect(() => {
         fetch('https://api.openligadb.de/getavailableleagues')
             .then(r => r.json())
@@ -42,25 +48,39 @@ function SportScorings() {
             .catch(() => setLeaguesLoading(false));
     }, []);
 
-    // ── Derived lists ──
+    // ── JETZT GEFILTERT: Sportarten ausgeben ──
     const sports = useMemo(() => {
         const map = {};
         allLeagues.forEach(l => {
-            if (!map[l.sport.sportId]) map[l.sport.sportId] = l.sport.sportName;
+            const isAllowed = ALLOWED_SPORTS.some(
+                s => s.name.toLowerCase() === l.sport.sportName.toLowerCase()
+            );
+            if (isAllowed && !map[l.sport.sportId]) {
+                map[l.sport.sportId] = l.sport.sportName;
+            }
         });
         return Object.entries(map)
             .map(([id, name]) => ({ id: Number(id), name }))
             .sort((a, b) => a.id - b.id);
     }, [allLeagues]);
 
+    // ── JETZT GEFILTERT: Saisons ausgeben ──
     const seasons = useMemo(() => {
         if (!selectedSport) return [];
+        const currentSportName = sports.find(s => s.id === selectedSport)?.name;
+
         const set = new Set(
-            allLeagues.filter(l => l.sport.sportId === selectedSport).map(l => l.leagueSeason)
+            allLeagues
+                .filter(l => {
+                    const config = ALLOWED_SPORTS.find(s => s.name.toLowerCase() === currentSportName?.toLowerCase());
+                    return l.sport.sportId === selectedSport && l.leagueSeason === config?.season;
+                })
+                .map(l => l.leagueSeason)
         );
         return [...set].sort((a, b) => Number(b) - Number(a));
-    }, [allLeagues, selectedSport]);
+    }, [allLeagues, selectedSport, sports]);
 
+    // ── Ligen ausgeben ──
     const leagues = useMemo(() => {
         if (!selectedSport || !selectedSeason) return [];
         return allLeagues
@@ -79,7 +99,7 @@ function SportScorings() {
         setSelectedLeague(league); setData(null);
     };
 
-    // ── Fetch data ──
+    // ── Fetch data direkt von OpenLigaDB ──
     const fetchData = useCallback(async (overrideMode, overrideTeam) => {
         if (!selectedLeague) return;
         const m    = overrideMode ?? mode;
