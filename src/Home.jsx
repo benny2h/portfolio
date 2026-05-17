@@ -1,8 +1,8 @@
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Skills from '../components/Skills';
-import Projekte from '../components/Projekte';
+import Navbar from './pages/Navbar';
+import Hero from './pages/Hero';
+import About from './pages/About';
+import Skills from './pages/Skills';
+import Projekte from './pages/Projekte';
 import {useState} from "react";
 
 function Home() {
