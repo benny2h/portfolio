@@ -3,11 +3,10 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Skills from '../components/Skills';
 import Projekte from '../components/Projekte';
-import Kontakt from '../components/Kontakt';
 import {useState} from "react";
 
 function Home() {
-    const [activeSection, setActiveSection] = useState('about');
+    const [activeSection, setActiveSection] = useState('hero');
 
     const scrollTo = (id) => {
         document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -20,7 +19,6 @@ function Home() {
             <About setActiveSection={setActiveSection} />
             <Skills setActiveSection={setActiveSection} />
             <Projekte setActiveSection={setActiveSection} />
-            <Kontakt setActiveSection={setActiveSection} />
         </div>
     );
 }

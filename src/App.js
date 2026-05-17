@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import FussballScorings from './pages/FussballScorings';
+import SportScorings from './pages/sportScorings';
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/footballScorings" element={<FussballScorings />} />
+                <Route path="/sportScorings" element={<SportScorings />} />
             </Routes>
         </BrowserRouter>
     );

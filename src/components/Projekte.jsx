@@ -16,10 +16,10 @@ function Projekte({ setActiveSection }) {
 
     const projekte = [
         {
-            title: 'Fussball Scorings',
-            desc: 'Live Fussball Tabellen, Spieltage und mehr mit echten Daten von OpenLigaDB',
-            route: '/footballScorings',
-            emoji: '⚽',
+            title: 'Sport Scorings',
+            desc: 'Wähle Saison, Sportart und Spieltage und blicke auf Tabellen und Spielplan mit echten LIVE-Daten der OpenLigaDB API',
+            route: '/sportScorings',
+            emoji: '🏟️',
         },
         {
             title: 'Eigener KI Chatbot',
@@ -33,7 +33,7 @@ function Projekte({ setActiveSection }) {
         <section id="projekte" ref={ref} style={styles.section}>
             <div style={{ ...styles.content, opacity: inView ? 1 : 0, transition: 'opacity 0.6s ease' }}>
                 <h2 style={styles.title}>Projekte</h2>
-                <p style={styles.subtitle}>Hier probiere ich Sachen aus und versuchen meine Skills zu erweitern ;)</p>
+                <p style={styles.subtitle}>Hier probiere ich Sachen aus und versuche meine Skills zu erweitern</p>
 
                 <div style={styles.grid}>
                     {projekte.map((projekt, i) => {

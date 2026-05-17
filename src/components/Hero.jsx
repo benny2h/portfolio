@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import useInView from "../hooks/useInView";
 
 function Hero({setActiveSection}) {
-    const [inView] = useInView();
+    const [ref, inView] = useInView();
 
     useEffect(() => {
         if (inView) {
@@ -11,7 +11,7 @@ function Hero({setActiveSection}) {
     }, [inView, setActiveSection]);
 
     return (
-        <section style={styles.hero}>
+        <section id="hero" ref={ref} style={styles.hero}>
             <div style={styles.container}>
                 <div style={styles.row}>
                     <div style={styles.textGroup}>
@@ -22,12 +22,7 @@ function Hero({setActiveSection}) {
                         <span>👨🏼‍💻</span>
                     </div>
                 </div>
-
                 <p style={styles.role}>Upcoming Developer / Designer</p>
-                <p style={styles.desc}>
-                    Wirtschaftsinformatik Student @ OTH Regensburg.<br/>
-                    Werkstudent bei IMPECT GmbH – Softwarelösungen für Fußballdatenanalyse
-                </p>
                 <div style={styles.socials}>
                     <a href="mailto:herdtbenny@gmail.com" style={styles.socialBtn}>@</a>
                     <a href="https://github.com/benny2h" target="_blank" rel="noreferrer" style={styles.socialBtn}>💻</a>
@@ -80,15 +75,9 @@ const styles = {
     role: {
         fontSize: 'clamp(14px, 4vw, 16px)',
         color: '#5dcaa5',
-        marginBottom: '12px',
+        marginBottom: '35px',
         fontWeight: '500',
         marginTop: '12px',
-    },
-    desc: {
-        fontSize: 'clamp(12px, 3vw, 14px)',
-        color: '#888',
-        lineHeight: '1.8',
-        marginBottom: 'clamp(20px, 5vw, 32px)',
     },
     socials: {
         display: 'flex',

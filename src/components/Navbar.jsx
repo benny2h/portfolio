@@ -1,11 +1,11 @@
 function Navbar({ scrollTo, activeSection }) {
-    const links = ['about', 'skills', 'projekte', 'kontakt'];
-    const labels = { about: 'About', skills: 'Skills', projekte: 'Projekte', kontakt: 'Kontakt' };
+    const links = ['hero', 'about', 'skills', 'projekte'];
+    const labels = { hero: 'Start', about: 'Über mich', skills: 'Skills', projekte: 'Projekte' };
 
     return (
         <nav style={styles.nav}>
             <div style={styles.links}>
-                {links.map((id, index) => {
+                {links.map((id) => {
                     const isActive = activeSection === id;
                     return (
                         <div key={id} style={styles.itemWrapper}>
@@ -38,7 +38,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 'clamp(12px, 3vw, 20px) clamp(10px, 3vw, 50px)',
+        padding: 'clamp(12px, 3vw, 20px) clamp(10px, 3vw, 40px)',
         backgroundColor: '#0f0f1a',
         zIndex: 1000,
     },
