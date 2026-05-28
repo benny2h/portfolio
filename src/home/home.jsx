@@ -1,8 +1,7 @@
-import Navbar from '../pages/Navbar';
-import Hero from '../pages/hero';
-import About from '../pages/about';
-import Skills from '../pages/skills';
-import Projects from '../pages/projects';
+import Navbar from '../navbar/navbar';
+import Hero from '../hero/hero';
+import About from '../about/about';
+import Projects from '../projects/projects';
 import {useState} from "react";
 
 function Home() {
@@ -17,7 +16,6 @@ function Home() {
             <Navbar scrollTo={scrollTo} activeSection={activeSection} />
             <Hero setActiveSection={setActiveSection}  />
             <About setActiveSection={setActiveSection} />
-            <Skills setActiveSection={setActiveSection} />
             <Projects setActiveSection={setActiveSection} />
         </div>
     );
