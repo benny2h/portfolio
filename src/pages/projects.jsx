@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import useInView from '../hooks/useInView';
 
-function Projekte({ setActiveSection }) {
+function Projects({ setActiveSection }) {
     const [ref, inView] = useInView();
 
     useEffect(() => {
@@ -20,12 +20,21 @@ function Projekte({ setActiveSection }) {
             desc: 'Wähle Saison, Sportart und Spieltage und blicke auf Tabellen und Spielplan mit echten LIVE-Daten der OpenLigaDB API',
             route: '/sportScorings',
             emoji: '🏟️',
+            disabled: false,
+        },
+        {
+            title: 'Spotify DNA Visualizer',
+            desc: 'Interaktive Musik-Visualisierung mit Spotify API, Genre-Netzwerken und Mood-Analyse',
+            route: '/spotify-dna-visualizer',
+            emoji: '🧬',
+            disabled: true,
         },
         {
             title: 'Eigener KI Chatbot',
             desc: 'Gemini-powered Chatbot – in Entwicklung',
             route: '/chatbot',
             emoji: '🤖',
+            disabled: true,
         },
     ];
 
@@ -44,22 +53,39 @@ function Projekte({ setActiveSection }) {
                                 key={projekt.title}
                                 style={{
                                     ...styles.card,
-                                    opacity: inView ? 1 : 0,
+                                    opacity: projekt.disabled ? 0.5 : 1,
                                     transform: inView
-                                        ? (isHovered ? 'translateY(0) scale(1.02)' : 'translateY(0)')
+                                        ? (isHovered && !projekt.disabled
+                                            ? 'translateY(0) scale(1.02)'
+                                            : 'translateY(0)')
                                         : 'translateY(30px)',
-                                    borderColor: isHovered ? '#5dcaa5' : '#1a1a2e',
-                                    boxShadow: isHovered ? '0 10px 30px rgba(93, 202, 165, 0.1)' : 'none',
+                                    borderColor:
+                                        isHovered && !projekt.disabled
+                                            ? '#5dcaa5'
+                                            : '#1a1a2e',
+                                    boxShadow:
+                                        isHovered && !projekt.disabled
+                                            ? '0 10px 30px rgba(93, 202, 165, 0.1)'
+                                            : 'none',
                                     transition: isHovered
                                         ? 'all 0.3s ease'
                                         : `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.15}s`,
+                                    cursor: projekt.disabled ? '' : 'pointer',
+                                    filter: projekt.disabled ? 'grayscale(0.3)' : 'none',
                                 }}
-                                onClick={() => navigate(projekt.route)}
+                                onClick={() => {
+                                    if (!projekt.disabled) {
+                                        navigate(projekt.route);
+                                    }
+                                }}
                                 onMouseEnter={() => setHoveredIndex(i)}
                                 onMouseLeave={() => setHoveredIndex(null)}
                             >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                     <span style={styles.cardEmoji}>{projekt.emoji}</span>
+                                    {projekt.disabled && (
+                                        <span style={styles.badge}>In Entwicklung</span>
+                                    )}
                                 </div>
                                 <h3 style={styles.cardTitle}>{projekt.title}</h3>
                                 <p style={styles.cardDesc}>{projekt.desc}</p>
@@ -86,6 +112,14 @@ const styles = {
         fontWeight: '600',
         color: '#fff',
         marginBottom: 'clamp(15px, 3vw, 25px)',
+    },
+    badge: {
+        fontSize: '12px',
+        color: '#5dcaa5',
+        backgroundColor: 'rgba(93, 202, 165, 0.1)',
+        padding: '4px 10px',
+        borderRadius: '999px',
+        border: '1px solid rgba(93, 202, 165, 0.2)',
     },
     subtitle: {
         fontSize: 'clamp(14px, 3vw, 16px)',
@@ -130,4 +164,4 @@ const styles = {
     },
 };
 
-export default Projekte;
+export default Projects;

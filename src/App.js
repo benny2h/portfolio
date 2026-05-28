@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import ChatBot from "./projects/chatBot/ChatBot";
+import Home from './home/home';
+import ChatBot from "./projects/chatBot/chatBot";
 import SportScorings from "./projects/sportScorings/SportScorings";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/sportScorings" element={<SportScorings />} />
                 <Route path="/sportScorings" element={<SportScorings />} />
                 <Route path="/chatBot" element={<ChatBot />} />
             </Routes>

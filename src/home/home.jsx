@@ -1,8 +1,8 @@
-import Navbar from './pages/Navbar';
-import Hero from './pages/Hero';
-import About from './pages/About';
-import Skills from './pages/Skills';
-import Projekte from './pages/Projekte';
+import Navbar from '../pages/Navbar';
+import Hero from '../pages/hero';
+import About from '../pages/about';
+import Skills from '../pages/skills';
+import Projects from '../pages/projects';
 import {useState} from "react";
 
 function Home() {
@@ -18,7 +18,7 @@ function Home() {
             <Hero setActiveSection={setActiveSection}  />
             <About setActiveSection={setActiveSection} />
             <Skills setActiveSection={setActiveSection} />
-            <Projekte setActiveSection={setActiveSection} />
+            <Projects setActiveSection={setActiveSection} />
         </div>
     );
 }

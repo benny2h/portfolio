@@ -1,6 +1,6 @@
 function Navbar({ scrollTo, activeSection }) {
     const links = ['hero', 'about', 'skills', 'projekte'];
-    const labels = { hero: 'Start', about: 'Über mich', skills: 'Skills', projekte: 'Projekte' };
+    const labels = { hero: 'Start', about: 'Über mich', skills: 'Skills', projekte: 'Projects' };
 
     return (
         <nav style={styles.nav}>

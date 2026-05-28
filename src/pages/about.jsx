@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import useInView from '../hooks/useInView';
+import {SiGithub} from "react-icons/si";
+import {FaEnvelope, FaLinkedinIn} from "react-icons/fa";
 
 function BigCard({ emoji, title, text1, text2, sub }) {
     const [hovered, setHovered] = useState(false);
@@ -8,7 +10,7 @@ function BigCard({ emoji, title, text1, text2, sub }) {
             style={{
                 ...styles.card,
                 transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-                boxShadow: hovered ? '0 8px 24px rgba(93, 202, 165, 0.15)' : 'none',
+                boxShadow: hovered ? '0 10px 30px rgba(93, 202, 165, 0.25)' : '0 6px 20px rgba(0,0,0,0.25)',
                 borderColor: hovered ? '#5dcaa5' : '#1a1a2e',
             }}
             onMouseEnter={() => setHovered(true)}
@@ -23,7 +25,7 @@ function BigCard({ emoji, title, text1, text2, sub }) {
     );
 }
 
-function KontaktCard({ href, target, rel, emoji, title, text }) {
+function KontaktCard({ href, target, rel, icon, title, text }) {
     const [hovered, setHovered] = useState(false);
     return (
         <a
@@ -40,7 +42,7 @@ function KontaktCard({ href, target, rel, emoji, title, text }) {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <span style={styles.kontaktIcon}>{emoji}</span>
+            <span style={styles.kontaktIcon}>{icon}</span>
             <div style={styles.kontaktTextWrapper}>
                 <p style={styles.kontaktCardTitle}>{title}</p>
                 <p style={styles.kontaktCardText}>{text}</p>
@@ -49,7 +51,7 @@ function KontaktCard({ href, target, rel, emoji, title, text }) {
     );
 }
 
-function AboutContact({ setActiveSection }) {
+function About({ setActiveSection }) {
     const [ref, inView] = useInView();
 
     useEffect(() => {
@@ -59,9 +61,28 @@ function AboutContact({ setActiveSection }) {
     }, [inView, setActiveSection]);
 
     const kontaktDaten = [
-        { href: 'mailto:herdtbenny@gmail.com', emoji: '✉️', title: 'E-Mail', text: 'herdtbenny@gmail.com' },
-        { href: 'https://linkedin.com/in/benny-herdt', target: '_blank', rel: 'noreferrer', emoji: '💼', title: 'LinkedIn', text: 'linkedin.com/in/benny-herdt' },
-        { href: 'https://github.com/benny2h', target: '_blank', rel: 'noreferrer', emoji: '💻', title: 'GitHub', text: 'github.com/benny2h' },
+        {
+            href: 'mailto:herdtbenny@gmail.com',
+            icon: <FaEnvelope color="#888" />,
+            title: 'E-Mail',
+            text: 'herdtbenny@gmail.com'
+        },
+        {
+            href: 'https://linkedin.com/in/benny-herdt',
+            target: '_blank',
+            rel: 'noreferrer',
+            icon: <FaLinkedinIn color="#0A66C2" />,
+            title: 'LinkedIn',
+            text: 'linkedin.com/in/benny-herdt'
+        },
+        {
+            href: 'https://github.com/benny2h',
+            target: '_blank',
+            rel: 'noreferrer',
+            icon: <SiGithub color="#fff" />,
+            title: 'GitHub',
+            text: 'github.com/benny2h'
+        },
     ];
 
     return (
@@ -74,7 +95,7 @@ function AboutContact({ setActiveSection }) {
             }}>
 
                 <h2 style={styles.title}>Über mich</h2>
-                <p style={styles.subtitle}>Schreib mir gerne zu Projekten, Jobs oder einfach so!</p>
+                <p style={styles.subtitle}>Frontend, APIs und interaktive User Experiences.</p>
 
                 <div style={styles.mainLayout}>
 
@@ -88,8 +109,8 @@ function AboutContact({ setActiveSection }) {
                         />
                         <BigCard
                             emoji="👨🏼‍💻"
-                            title="Aktuell"
-                            text1="Werkstudent Softwareentwicklung - IMPECT GmbH, Köln"
+                            title="Werkstudent Softwareentwicklung"
+                            text1="IMPECT GmbH, Köln"
                             text2="Softwarelösungen für Fußballdatenanalyse"
                             sub="seit 02/2026"
                         />
@@ -112,8 +133,8 @@ const styles = {
         minHeight: '100vh',
         backgroundColor: '#0f0f1a',
         display: 'flex',
-        alignItems: 'center',
-        padding: 'clamp(60px, 10vw, 100px) clamp(20px, 5vw, 10%)',
+        alignItems: 'flex-start',
+        padding: '120px clamp(20px, 5vw, 10%) 80px',
     },
     content: { width: '100%' },
     title: {
@@ -216,4 +237,4 @@ const styles = {
     },
 };
 
-export default AboutContact;
+export default About;
