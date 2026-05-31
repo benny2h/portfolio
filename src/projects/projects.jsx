@@ -24,17 +24,17 @@ function Projects({ setActiveSection }) {
             disabled: false,
         },
         {
-            title: 'Spotify DNA Visualizer',
-            desc: 'Genre-Netzwerke, Audio Features und interaktive Mood-Analysen.',
-            route: '/spotify-dna-visualizer',
-            emoji: '🧬',
-            disabled: true,
-        },
-        {
             title: 'Eigener KI Chatbot',
             desc: 'Gemini-basierter Chatbot mit eigener UI und Kontextsystem.',
             route: '/chatbot',
             emoji: '🤖',
+            disabled: true,
+        },
+        {
+            title: 'Spotify DNA Visualizer',
+            desc: 'Genre-Netzwerke, Audio Features und interaktive Mood-Analysen.',
+            route: '/spotify-dna-visualizer',
+            emoji: '🧬',
             disabled: true,
         },
     ];

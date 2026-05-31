@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './home/home';
 import ChatBot from "./projects/chatBot/chatBot";
-import SportScorings from "./projects/sportScorings/SportScorings";
+import SportScorings from "./projects/sportScorings/sportScorings";
 
 function App() {
     return (
