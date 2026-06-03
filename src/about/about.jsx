@@ -10,7 +10,7 @@ import {
     SiSap,
     SiPostgresql,
     SiTailwindcss,
-    SiVercel
+    SiVercel, SiDocker, SiNodedotjs, SiFigma
 } from 'react-icons/si';
 import './about.css';
 
@@ -51,12 +51,13 @@ function About({setActiveSection}) {
         {name: 'HTML', icon: <SiHtml5 color="#e34f26"/>},
         {name: 'Tailwind', icon: <SiTailwindcss color="#38bdf8"/>},
         {name: 'Git', icon: <SiGitlab color="#fc6d26"/>},
+        {name: 'Node.js', icon: <SiNodedotjs color="#3c873a"/>},
+        {name: 'Figma', icon: <SiFigma color="#f24e1e"/>},
+        {name: 'Docker', icon: <SiDocker color="#2496ed"/>},
         {name: 'Vercel', icon: <SiVercel color="#000000"/>},
-        {name: 'REST APIs', icon: '🌐'},
         {name: 'Cypress', icon: <SiCypress color="#17202c"/>},
         {name: 'SAP ABAP', icon: <SiSap color="#008FD3"/>},
         {name: 'C', icon: <VscCode color="#007acc"/>},
-        {name: 'Algorithmen & Datenstrukturen', icon: '⚙️'},
         {name: 'UI / UX Design', icon: '🎨'},
     ];
 
@@ -73,7 +74,7 @@ function About({setActiveSection}) {
                 >
                     <p className="about-eyebrow">Wer bin ich</p>
                     <h2 className="about-title">Über mich</h2>
-                    <p className="about-subtitle">Enthusiast für Frontend, APIs und interaktive User Experiences</p>
+                    <p className="about-subtitle">Frontend, APIs und interaktive User Experiences</p>
 
                     <div className="about-grid">
 

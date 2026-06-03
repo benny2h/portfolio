@@ -1,6 +1,6 @@
 .projects-root {
     min-height: 100vh;
-    background: #080b0f;
+    background: #12171e;
     padding: clamp(100px, 14vw, 140px) clamp(20px, 6vw, 80px) clamp(60px, 8vw, 100px);
 
     position: relative;

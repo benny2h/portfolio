@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import bennyImg from "../assets/benny.png";
 import './hero.css'
 
-const roles = ["Developer", "Designer", "Student"];
+const roles = ["Entwickler", "Designer", "Student"];
 
 function Hero({ setActiveSection }) {
     const [ref, inView] = useInView();
@@ -35,18 +35,14 @@ function Hero({ setActiveSection }) {
     return (
         <>
             <section id="hero" ref={ref} className="hero-root">
-                <div className="hero-panel" />
-
-                {/* LEFT */}
-                <div className="hero-left">
+                <div className="hero">
                     <p className="hero-greeting">Hey, mein Name ist</p>
                     <h1 className="hero-name">
                         Benny<br /><span>Herdt</span>
                     </h1>
 
                     <div className="hero-role-wrap">
-                        <span className="hero-role-text">
-                            Ich bin {displayed}<span className="hero-cursor" />
+                        <span className="hero-role-text">{displayed}<span className="hero-cursor" />
                         </span>
                     </div>
 

@@ -64,7 +64,7 @@ function Projects({ setActiveSection }) {
                     </h2>
 
                     <p className="projects-subtitle">
-                        Hier probiere ich neue Ideen und Technologien aus.
+                        Neue Ideen und Technologien
                     </p>
 
                     <div className="projects-grid">
