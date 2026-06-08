@@ -9,7 +9,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sportScorings" element={<SportScorings />} />
-                <Route path="/sportScorings" element={<SportScorings />} />
                 <Route path="/chatBot" element={<ChatBot />} />
             </Routes>
         </BrowserRouter>

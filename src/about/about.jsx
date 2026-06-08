@@ -7,15 +7,13 @@ import {
     SiCypress,
     SiHtml5,
     SiGitlab,
-    SiSap,
     SiPostgresql,
     SiTailwindcss,
-    SiVercel, SiDocker, SiNodedotjs, SiFigma
+    SiVercel, SiDocker, SiNodedotjs,
+    SiCloudflare, SiNetlify, SiPostman
 } from 'react-icons/si';
-import './about.css';
 
 import {FaJava} from 'react-icons/fa';
-import {VscCode} from "react-icons/vsc";
 
 function About({setActiveSection}) {
     const [ref, inView] = useInView();
@@ -52,75 +50,83 @@ function About({setActiveSection}) {
         {name: 'Tailwind', icon: <SiTailwindcss color="#38bdf8"/>},
         {name: 'Git', icon: <SiGitlab color="#fc6d26"/>},
         {name: 'Node.js', icon: <SiNodedotjs color="#3c873a"/>},
-        {name: 'Figma', icon: <SiFigma color="#f24e1e"/>},
         {name: 'Docker', icon: <SiDocker color="#2496ed"/>},
         {name: 'Vercel', icon: <SiVercel color="#000000"/>},
         {name: 'Cypress', icon: <SiCypress color="#17202c"/>},
-        {name: 'SAP ABAP', icon: <SiSap color="#008FD3"/>},
-        {name: 'C', icon: <VscCode color="#007acc"/>},
-        {name: 'UI / UX Design', icon: '🎨'},
+        {name: 'Cloudflare', icon: <SiCloudflare color="#f38020"/>},
+        {name: 'Netlify', icon: <SiNetlify color="#00c7b7"/>},
+        {name: 'Postman', icon: <SiPostman color="#ff6c37"/>},
     ];
 
-
     return (
-        <>
-            <section id="about" ref={ref} className="about-root">
-                <div
-                    className="about-inner"
-                    style={{
-                        opacity: inView ? 1 : 0,
-                        transform: inView ? 'translateY(0)' : 'translateY(40px)',
-                    }}
-                >
-                    <p className="about-eyebrow">Wer bin ich</p>
-                    <h2 className="about-title">Über mich</h2>
-                    <p className="about-subtitle">Frontend, APIs und interaktive User Experiences</p>
+        <section
+            id="about"
+            ref={ref}
+            className="relative box-border min-h-screen overflow-hidden bg-[#12171e] px-5 pb-16 pt-28 font-syne sm:px-12 sm:pb-24 sm:pt-32 lg:px-20 lg:pt-36"
+        >
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.08)_0%,transparent_70%)] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]" />
 
-                    <div className="about-grid">
+            <div
+                className="relative mx-auto w-full max-w-[1100px] transition-all duration-700 ease-out"
+                style={{
+                    opacity: inView ? 1 : 0,
+                    transform: inView ? 'translateY(0)' : 'translateY(40px)',
+                }}
+            >
+                <p className="m-0 mb-3.5 font-inter text-xs font-semibold uppercase tracking-[3px] text-accent">Wer bin ich</p>
+                <h2 className="m-0 mb-4 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">Über mich</h2>
+                <p className="m-0 mb-12 max-w-[500px] font-inter text-sm leading-[1.7] text-neutral-500 sm:mb-[72px] sm:text-base">Frontend, APIs und interaktive User Experiences</p>
 
-                        {/* TIMELINE */}
-                        <div className="about-timeline">
-                            <p className="about-tl-label">Werdegang</p>
-                            {timeline.map((item, i) => (
-                                <div key={i} className="about-tl-item">
-                                    <div className="about-tl-line">
-                                        <div className="about-tl-dot">{item.icon}</div>
-                                        <div className="about-tl-connector"/>
+                <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[460px_1fr] lg:gap-7">
+
+                    {/* TIMELINE */}
+                    <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-7 sm:p-10">
+                        <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-neutral-700">Werdegang</p>
+                        {timeline.map((item, i) => (
+                            <div key={i} className="relative flex gap-5 pb-8 last:pb-0">
+                                <div className="flex shrink-0 flex-col items-center">
+                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border-[1.5px] border-cyan-500/30 bg-cyan-500/10 text-base">
+                                        {item.icon}
                                     </div>
-                                    <div>
-                                        <span className="about-tl-tag">{item.tag}</span>
-                                        <p className="about-tl-title">{item.title}</p>
-                                        <p className="about-tl-place">{item.place}</p>
-                                        {item.detail && <p className="about-tl-detail">{item.detail}</p>}
-                                        <span className="about-tl-period">{item.period}</span>
+                                    {i !== timeline.length - 1 && (
+                                        <div className="mt-2 w-px flex-1 bg-gradient-to-b from-cyan-500/20 to-transparent" />
+                                    )}
+                                </div>
+                                <div>
+                                    <span className="mb-1.5 inline-block font-inter text-[10px] font-bold uppercase tracking-[1.5px] text-accent">{item.tag}</span>
+                                    <p className="m-0 mb-1 text-sm font-bold leading-[1.3] text-white sm:text-base">{item.title}</p>
+                                    <p className="m-0 mb-1 font-inter text-xs text-neutral-400">{item.place}</p>
+                                    {item.detail && <p className="m-0 mb-1.5 font-inter text-[11px] leading-[1.5] text-neutral-600 sm:text-xs">{item.detail}</p>}
+                                    <span className="font-inter text-[11px] font-medium text-neutral-700">{item.period}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* SKILLS */}
+                    <div className="box-border w-full flex-1 rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-6 sm:p-8">
+                        <p className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-neutral-700">Tech Stack &amp; Skills</p>
+
+                        <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4 lg:grid-cols-5">
+                            {skills.map((skill, i) => (
+                                <div
+                                    key={i}
+                                    className="flex h-[110px] flex-col items-center justify-center gap-2.5 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-3 transition-all duration-200 ease-out hover:-translate-y-[3px] hover:border-cyan-500/35 hover:bg-cyan-500/5"
+                                >
+                                    <div className="flex items-center justify-center text-3xl">
+                                        {skill.icon}
+                                    </div>
+                                    <div className="text-center font-inter text-[11px] leading-[1.3] text-neutral-300">
+                                        {skill.name}
                                     </div>
                                 </div>
                             ))}
                         </div>
-
-                        {/* SKILLS */}
-                        <div className="about-skills">
-                            <p className="about-skills-label">Tech Stack & Skills</p>
-
-                            <div className="about-skills-grid">
-                                {skills.map((skill, i) => (
-                                    <div key={i} className="about-skill">
-                                        <div className="about-skill-icon">
-                                            {skill.icon}
-                                        </div>
-
-                                        <div className="about-skill-name">
-                                            {skill.name}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
                     </div>
+
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }
 
