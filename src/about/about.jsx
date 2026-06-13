@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 import useInView from '../hooks/useInView';
+import RevealLine from '../components/revealLine';
 import {
     SiAngular,
     SiTypescript,
@@ -40,22 +41,37 @@ function About({setActiveSection}) {
         },
     ];
 
-    const skills = [
-        {name: 'React', icon: <SiReact color="#61dafb"/>},
-        {name: 'Angular', icon: <SiAngular color="#dd0031"/>},
-        {name: 'TypeScript', icon: <SiTypescript color="#3178c6"/>},
-        {name: 'Java', icon: <FaJava color="#f89820"/>},
-        {name: 'PostgreSQL', icon: <SiPostgresql color="#4169E1"/>},
-        {name: 'HTML', icon: <SiHtml5 color="#e34f26"/>},
-        {name: 'Tailwind', icon: <SiTailwindcss color="#38bdf8"/>},
-        {name: 'Git', icon: <SiGitlab color="#fc6d26"/>},
-        {name: 'Node.js', icon: <SiNodedotjs color="#3c873a"/>},
-        {name: 'Docker', icon: <SiDocker color="#2496ed"/>},
-        {name: 'Vercel', icon: <SiVercel color="#000000"/>},
-        {name: 'Cypress', icon: <SiCypress color="#17202c"/>},
-        {name: 'Cloudflare', icon: <SiCloudflare color="#f38020"/>},
-        {name: 'Netlify', icon: <SiNetlify color="#00c7b7"/>},
-        {name: 'Postman', icon: <SiPostman color="#ff6c37"/>},
+    const skillGroups = [
+        {
+            label: 'Frontend',
+            skills: [
+                {name: 'React', icon: <SiReact color="#61dafb"/>},
+                {name: 'Angular', icon: <SiAngular color="#dd0031"/>},
+                {name: 'TypeScript', icon: <SiTypescript color="#3178c6"/>},
+                {name: 'HTML', icon: <SiHtml5 color="#e34f26"/>},
+                {name: 'Tailwind', icon: <SiTailwindcss color="#38bdf8"/>},
+            ],
+        },
+        {
+            label: 'Backend',
+            skills: [
+                {name: 'Java', icon: <FaJava color="#f89820"/>},
+                {name: 'Node.js', icon: <SiNodedotjs color="#3c873a"/>},
+                {name: 'PostgreSQL', icon: <SiPostgresql color="#4169E1"/>},
+            ],
+        },
+        {
+            label: 'Tools',
+            skills: [
+                {name: 'Git', icon: <SiGitlab color="#fc6d26"/>},
+                {name: 'Docker', icon: <SiDocker color="#2496ed"/>},
+                {name: 'Vercel', icon: <SiVercel color="#ffffff"/>},
+                {name: 'Cloudflare', icon: <SiCloudflare color="#f38020"/>},
+                {name: 'Netlify', icon: <SiNetlify color="#00c7b7"/>},
+                {name: 'Cypress', icon: <SiCypress color="#ffffff"/>},
+                {name: 'Postman', icon: <SiPostman color="#ff6c37"/>},
+            ],
+        },
     ];
 
     return (
@@ -67,21 +83,25 @@ function About({setActiveSection}) {
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.08)_0%,transparent_70%)] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]" />
 
             <div
-                className="relative mx-auto w-full max-w-[1100px] transition-all duration-700 ease-out"
+                className="relative mx-auto w-full max-w-[1320px] transition-all duration-700 ease-out"
                 style={{
                     opacity: inView ? 1 : 0,
                     transform: inView ? 'translateY(0)' : 'translateY(40px)',
                 }}
             >
-                <p className="m-0 mb-3.5 font-inter text-xs font-semibold uppercase tracking-[3px] text-accent">Wer bin ich</p>
-                <h2 className="m-0 mb-4 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">Über mich</h2>
+                <p className="m-0 mb-3.5 font-inter text-xs font-semibold uppercase tracking-[3px] text-accent">
+                    <RevealLine inView={inView} delay={0}>Wer bin ich</RevealLine>
+                </p>
+                <h2 className="m-0 mb-4 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">
+                    <RevealLine inView={inView} delay={120}>Über mich</RevealLine>
+                </h2>
                 <p className="m-0 mb-12 max-w-[500px] font-inter text-sm leading-[1.7] text-neutral-500 sm:mb-[72px] sm:text-base">Frontend, APIs und interaktive User Experiences</p>
 
                 <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[460px_1fr] lg:gap-7">
 
                     {/* TIMELINE */}
                     <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-7 sm:p-10">
-                        <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-neutral-700">Werdegang</p>
+                        <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-accent">Werdegang</p>
                         {timeline.map((item, i) => (
                             <div key={i} className="relative flex gap-5 pb-8 last:pb-0">
                                 <div className="flex shrink-0 flex-col items-center">
@@ -93,7 +113,7 @@ function About({setActiveSection}) {
                                     )}
                                 </div>
                                 <div>
-                                    <span className="mb-1.5 inline-block font-inter text-[10px] font-bold uppercase tracking-[1.5px] text-accent">{item.tag}</span>
+                                    <span className="mb-1.5 inline-block font-inter text-[10px] font-bold uppercase tracking-[1.5px] text-neutral-700">{item.tag}</span>
                                     <p className="m-0 mb-1 text-sm font-bold leading-[1.3] text-white sm:text-base">{item.title}</p>
                                     <p className="m-0 mb-1 font-inter text-xs text-neutral-400">{item.place}</p>
                                     {item.detail && <p className="m-0 mb-1.5 font-inter text-[11px] leading-[1.5] text-neutral-600 sm:text-xs">{item.detail}</p>}
@@ -104,20 +124,23 @@ function About({setActiveSection}) {
                     </div>
 
                     {/* SKILLS */}
-                    <div className="box-border w-full flex-1 rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-6 sm:p-8">
-                        <p className="mb-6 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-neutral-700">Tech Stack &amp; Skills</p>
+                    <div className="box-border flex w-full flex-1 flex-col rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-6 sm:p-8">
+                        <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-accent">Tech Stack</p>
 
-                        <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4 lg:grid-cols-5">
-                            {skills.map((skill, i) => (
-                                <div
-                                    key={i}
-                                    className="flex h-[110px] flex-col items-center justify-center gap-2.5 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-3 transition-all duration-200 ease-out hover:-translate-y-[3px] hover:border-cyan-500/35 hover:bg-cyan-500/5"
-                                >
-                                    <div className="flex items-center justify-center text-3xl">
-                                        {skill.icon}
-                                    </div>
-                                    <div className="text-center font-inter text-[11px] leading-[1.3] text-neutral-300">
-                                        {skill.name}
+                        <div className="flex flex-col gap-6">
+                            {skillGroups.map((group) => (
+                                <div key={group.label}>
+                                    <p className="mb-3 font-inter text-[10px] font-bold uppercase tracking-[2px] text-neutral-700">{group.label}</p>
+                                    <div className="flex flex-wrap gap-2.5">
+                                        {group.skills.map((skill) => (
+                                            <div
+                                                key={skill.name}
+                                                className="group flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-cyan-500/35 hover:bg-cyan-500/[0.08]"
+                                            >
+                                                <span className="flex items-center justify-center text-base leading-none">{skill.icon}</span>
+                                                <span className="font-inter text-xs font-medium text-neutral-400 transition-colors duration-200 group-hover:text-white">{skill.name}</span>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             ))}

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useInView from '../hooks/useInView';
+import RevealLine from '../components/revealLine';
 
 /* Mini-Vorschau im Sport-Scorings-Look (slate-950 + Cyan-Akzente, Mono-Font) */
 function SportScoringsPreview() {
@@ -83,8 +84,12 @@ function Projects({ setActiveSection }) {
                     transform: inView ? 'translateY(0)' : 'translateY(40px)',
                 }}
             >
-                <p className="m-0 mb-3.5 font-inter text-xs font-semibold uppercase tracking-[3px] text-accent">Eigene Projekte</p>
-                <h2 className="m-0 mb-4 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">Projekte</h2>
+                <p className="m-0 mb-3.5 font-inter text-xs font-semibold uppercase tracking-[3px] text-accent">
+                    <RevealLine inView={inView} delay={0}>Eigene Projekte</RevealLine>
+                </p>
+                <h2 className="m-0 mb-4 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">
+                    <RevealLine inView={inView} delay={120}>Projekte</RevealLine>
+                </h2>
                 <p className="m-0 mb-12 max-w-[560px] font-inter text-sm leading-[1.7] text-neutral-500 sm:mb-[72px] sm:text-base">Neue Ideen und Technologien</p>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">

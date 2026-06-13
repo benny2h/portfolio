@@ -1,6 +1,7 @@
 import Navbar from '../navbar/navbar';
 import Hero from '../hero/hero';
 import About from '../about/about';
+import Leistungen from '../leistungen/leistungen';
 import Projects from '../projects/projects';
 import {useState} from "react";
 
@@ -16,6 +17,7 @@ function Home() {
             <Navbar scrollTo={scrollTo} activeSection={activeSection} />
             <Hero setActiveSection={setActiveSection}  />
             <About setActiveSection={setActiveSection} />
+            <Leistungen setActiveSection={setActiveSection} />
             <Projects setActiveSection={setActiveSection} />
         </div>
     );
