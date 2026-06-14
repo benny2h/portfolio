@@ -83,7 +83,7 @@ function Leistungen({ setActiveSection }) {
                         </p>
                     </div>
                     <a
-                        href="mailto:herdtbenny@gmail.com?subject=Demo-Website%20f%C3%BCr%20mein%20Unternehmen"
+                        href="mailto:websbybenny@gmail.com?subject=Demo-Website%20f%C3%BCr%20mein%20Unternehmen"
                         className="shrink-0 whitespace-nowrap rounded-xl border border-white/10 bg-white/[0.03] px-7 py-4 font-inter text-sm font-semibold text-neutral-300 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-cyan-500/[0.12] hover:text-accent"
                     >
                         Demo anfragen →
