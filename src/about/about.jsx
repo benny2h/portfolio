@@ -92,10 +92,9 @@ function About({setActiveSection}) {
                 <p className="m-0 mb-3.5 font-inter text-xs font-semibold uppercase tracking-[3px] text-accent">
                     <RevealLine inView={inView} delay={0}>Wer bin ich</RevealLine>
                 </p>
-                <h2 className="m-0 mb-4 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">
+                <h2 className="m-0 mb-16 text-3xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">
                     <RevealLine inView={inView} delay={120}>Über mich</RevealLine>
                 </h2>
-                <p className="m-0 mb-12 max-w-[500px] font-inter text-sm leading-[1.7] text-neutral-500 sm:mb-[72px] sm:text-base">Frontend, APIs und interaktive User Experiences</p>
 
                 <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[460px_1fr] lg:gap-7">
 
@@ -103,7 +102,15 @@ function About({setActiveSection}) {
                     <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-7 sm:p-10">
                         <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-accent">Werdegang</p>
                         {timeline.map((item, i) => (
-                            <div key={i} className="relative flex gap-5 pb-8 last:pb-0">
+                            <div
+                                key={i}
+                                className="relative flex gap-5 pb-8 last:pb-0"
+                                style={{
+                                    opacity: inView ? 1 : 0,
+                                    transform: inView ? 'translateX(0)' : 'translateX(-16px)',
+                                    transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.15}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.15}s`,
+                                }}
+                            >
                                 <div className="flex shrink-0 flex-col items-center">
                                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border-[1.5px] border-cyan-500/30 bg-cyan-500/10 text-base">
                                         {item.icon}
@@ -128,8 +135,15 @@ function About({setActiveSection}) {
                         <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-accent">Tech Stack</p>
 
                         <div className="flex flex-col gap-6">
-                            {skillGroups.map((group) => (
-                                <div key={group.label}>
+                            {skillGroups.map((group, i) => (
+                                <div
+                                    key={group.label}
+                                    style={{
+                                        opacity: inView ? 1 : 0,
+                                        transform: inView ? 'translateY(0)' : 'translateY(16px)',
+                                        transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s`,
+                                    }}
+                                >
                                     <p className="mb-3 font-inter text-[10px] font-bold uppercase tracking-[2px] text-neutral-700">{group.label}</p>
                                     <div className="flex flex-wrap gap-2.5">
                                         {group.skills.map((skill) => (

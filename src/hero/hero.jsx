@@ -38,7 +38,7 @@ function Hero({ setActiveSection }) {
         <section
             id="hero"
             ref={ref}
-            className="relative flex min-h-screen overflow-hidden bg-[#12171e] font-syne"
+            className="relative flex min-h-screen overflow-hidden font-syne"
         >
             {/* dot-grid texture */}
             <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black_30%,transparent_100%)]" />
@@ -72,7 +72,7 @@ function Hero({ setActiveSection }) {
 
                 <div className="mb-8 inline-flex items-center self-start rounded-lg border-2 border-cyan-500/40 bg-cyan-500/[0.12] px-4 py-2.5 sm:mb-12">
                     <span className="inline-block overflow-hidden whitespace-nowrap text-xs font-bold uppercase tracking-[2px] text-cyan-100 sm:text-lg">
-                        {displayed}
+                        Ich bin {displayed}
                         <span className="ml-1 inline-block h-[1em] w-0.5 animate-blink bg-accent align-middle" />
                     </span>
                 </div>
