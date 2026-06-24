@@ -11,7 +11,7 @@ export function Tabelle({ data }) {
                     {['#', 'Verein', 'Sp', 'S', 'U', 'N', 'Tore', 'Pkt'].map(h => (
                         <th
                             key={h}
-                            className={`whitespace-nowrap border-b border-white/[0.06] bg-[#0e1117] px-3 py-2.5 font-mono text-[10px] font-medium uppercase tracking-wider text-accent ${h === 'Verein' ? 'text-left' : 'text-center'}`}
+                            className={`whitespace-nowrap border-b border-white/[0.06] bg-[#0a0a0a] px-3 py-2.5 font-mono text-[10px] font-medium uppercase tracking-wider text-accent ${h === 'Verein' ? 'text-left' : 'text-center'}`}
                         >
                             {h}
                         </th>
@@ -42,7 +42,7 @@ export function Tabelle({ data }) {
                 })}
                 </tbody>
             </table>
-            <div className="flex flex-wrap items-center gap-4 border-t border-white/[0.06] bg-[#0e1117]/60 px-3 py-2.5 font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+            <div className="flex flex-wrap items-center gap-4 border-t border-white/[0.06] bg-[#0a0a0a]/60 px-3 py-2.5 font-mono text-[10px] uppercase tracking-wider text-neutral-500">
                 <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-accent" />International</span>
                 <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-red-400/70" />Abstieg</span>
             </div>
@@ -62,7 +62,7 @@ export function Spiele({ data }) {
                     day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
                 });
                 return (
-                    <div key={m.matchID ?? i} className="rounded-xl border border-white/[0.06] bg-[#0e1117] p-4 transition-colors hover:border-accent/60 hover:bg-white/[0.04] sm:p-[18px]">
+                    <div key={m.matchID ?? i} className="rounded-xl border border-white/[0.06] bg-[#0a0a0a] p-4 transition-colors hover:border-accent/60 hover:bg-white/[0.04] sm:p-[18px]">
                         <div className="flex items-center justify-between gap-2">
                             <div className="flex min-w-0 flex-1 flex-col items-center gap-1.5 text-center text-xs font-medium text-neutral-300">
                                 <img src={m.team1.teamIconUrl} alt="" className="h-7 w-7 object-contain" onError={e => e.target.style.display = 'none'} />

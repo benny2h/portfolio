@@ -5,7 +5,7 @@ import { Tabelle, Spiele, Torjaeger } from './sportScoringView';
 
 const LEAGUES_CACHE_KEY = 'sport_scoring_leagues';
 
-const selectClasses = 'cursor-pointer rounded-lg border border-white/10 bg-[#0e1117] px-3 py-2 font-mono text-xs text-neutral-300 outline-none transition-colors hover:border-neutral-500 focus:border-accent';
+const selectClasses = 'cursor-pointer rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2 font-mono text-xs text-neutral-300 outline-none transition-colors hover:border-neutral-500 focus:border-accent';
 
 export default function SportScorings() {
     const navigate = useNavigate();
@@ -115,9 +115,9 @@ export default function SportScorings() {
     const activeMode   = MODES.find(m => m.id === mode);
 
     return (
-        <div className="relative flex h-screen overflow-hidden bg-[#12171e] font-['DM_Sans',_system-ui,_sans-serif] text-white">
-            <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.10)_0%,transparent_70%)]" />
-            <div className="pointer-events-none absolute -bottom-40 -left-32 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.06)_0%,transparent_70%)]" />
+        <div className="relative flex h-screen overflow-hidden bg-[#000000] font-['DM_Sans',_system-ui,_sans-serif] text-white">
+            <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.10)_0%,transparent_70%)]" />
+            <div className="pointer-events-none absolute -bottom-40 -left-32 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.06)_0%,transparent_70%)]" />
 
             {/* ═══ MOBILE BACKDROP ═══ */}
             {sidebarOpen && (
@@ -125,7 +125,7 @@ export default function SportScorings() {
             )}
 
             {/* ═══ SIDEBAR ═══ */}
-            <aside className={`fixed inset-y-0 left-0 z-40 flex w-72 shrink-0 flex-col border-r border-white/[0.06] bg-[#0e1117] transition-transform duration-300 ease-out lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 left-0 z-40 flex w-72 shrink-0 flex-col border-r border-white/[0.06] bg-[#0a0a0a] transition-transform duration-300 ease-out lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-4">
                     <button
                         className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.06] text-accent transition-colors hover:bg-accent/10"
@@ -210,7 +210,7 @@ export default function SportScorings() {
 
             {/* ═══ MAIN ═══ */}
             <div className="relative z-10 flex min-w-0 flex-1 flex-col overflow-hidden">
-                <header className="sticky top-0 z-20 border-b border-white/[0.06] bg-[#0e1117]/90 backdrop-blur-md">
+                <header className="sticky top-0 z-20 border-b border-white/[0.06] bg-[#0a0a0a]/90 backdrop-blur-md">
                     <div className="flex items-center gap-3 px-4 py-4 sm:px-8">
                         <button
                             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.06] text-neutral-400 transition-colors hover:bg-white/[0.06] lg:hidden"
@@ -244,7 +244,7 @@ export default function SportScorings() {
                                 key={m.id}
                                 className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-wider transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                                     mode === m.id
-                                        ? 'bg-accent text-[#0e1117]'
+                                        ? 'bg-accent text-[#0a0a0a]'
                                         : 'bg-white/[0.04] text-neutral-400 hover:bg-white/[0.08] hover:text-neutral-200'
                                 }`}
                                 disabled={!selectedLeague}
@@ -258,7 +258,7 @@ export default function SportScorings() {
 
                 {/* ═══ SUB-BAR (spieltag / team) ═══ */}
                 {selectedLeague && (mode === 'spieltag' || mode === 'team') && (
-                    <div className="flex flex-wrap items-center gap-3 border-b border-white/[0.06] bg-[#12171e]/90 px-4 py-3 backdrop-blur-md sm:px-8">
+                    <div className="flex flex-wrap items-center gap-3 border-b border-white/[0.06] bg-[#000000]/90 px-4 py-3 backdrop-blur-md sm:px-8">
                         {mode === 'spieltag' && (
                             <select className={selectClasses} value={matchday} onChange={e => setMatchday(Number(e.target.value))}>
                                 {Array.from({ length: MAX_MATCHDAY }, (_, i) => (
@@ -269,7 +269,7 @@ export default function SportScorings() {
                         {mode === 'team' && (
                             <div className="flex items-center gap-2">
                                 <input
-                                    className="rounded-lg border border-white/10 bg-[#0e1117] px-3 py-2 font-mono text-xs text-white outline-none transition-colors focus:border-accent"
+                                    className="rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2 font-mono text-xs text-white outline-none transition-colors focus:border-accent"
                                     type="text"
                                     placeholder="Teamname…"
                                     value={teamSearch}
@@ -290,7 +290,7 @@ export default function SportScorings() {
                 {/* ═══ EMPTY / LOADING / ERROR ═══ */}
                 {!selectedLeague && !leaguesLoading && (
                     <div className="flex flex-1 flex-col items-center justify-center gap-3 px-8 py-20">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0e1117] text-3xl opacity-40">⚽</div>
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0a0a0a] text-3xl opacity-40">⚽</div>
                         <p className="m-0 text-base font-medium text-neutral-600">Keine aktive Liga in der Whitelist konfiguriert</p>
                     </div>
                 )}

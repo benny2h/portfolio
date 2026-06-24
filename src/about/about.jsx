@@ -1,4 +1,5 @@
 import useInView from '../hooks/useInView';
+import useFlipRotation from '../hooks/useFlipRotation';
 import RevealLine from '../components/revealLine';
 import {
     SiAngular,
@@ -17,6 +18,7 @@ import {FaJava} from 'react-icons/fa';
 
 function About() {
     const [ref, inView] = useInView();
+    const rotation = useFlipRotation('about');
 
     const timeline = [
         {
@@ -73,10 +75,15 @@ function About() {
         <section
             id="about"
             ref={ref}
-            className="relative box-border min-h-screen overflow-hidden bg-[#12171e] px-5 pb-16 pt-28 font-syne sm:px-12 sm:pb-24 sm:pt-32 lg:px-20 lg:pt-36"
+            className="relative box-border min-h-screen overflow-hidden bg-[#000000] px-5 pb-16 pt-28 font-syne sm:px-12 sm:pb-24 sm:pt-32 lg:px-20 lg:pt-36"
+            style={{ perspective: '1600px' }}
         >
-            <div className="pointer-events-none absolute -bottom-24 -left-24 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.08)_0%,transparent_70%)] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.08)_0%,transparent_70%)] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]" />
 
+            <div
+                className="[backface-visibility:hidden] [transform-style:preserve-3d]"
+                style={{ transform: `rotateY(${rotation}deg)` }}
+            >
             <div
                 className="relative mx-auto w-full max-w-[1320px] transition-all duration-700 ease-out"
                 style={{
@@ -94,7 +101,7 @@ function About() {
                 <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[460px_1fr] lg:gap-7">
 
                     {/* TIMELINE */}
-                    <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-7 sm:p-10">
+                    <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-[#0a0a0a] p-7 sm:p-10">
                         <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-accent">Werdegang</p>
                         {timeline.map((item, i) => (
                             <div
@@ -107,11 +114,11 @@ function About() {
                                 }}
                             >
                                 <div className="flex shrink-0 flex-col items-center">
-                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border-[1.5px] border-cyan-500/30 bg-cyan-500/10 text-base">
+                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border-[1.5px] border-blue-500/30 bg-blue-500/10 text-base">
                                         {item.icon}
                                     </div>
                                     {i !== timeline.length - 1 && (
-                                        <div className="mt-2 w-px flex-1 bg-gradient-to-b from-cyan-500/20 to-transparent" />
+                                        <div className="mt-2 w-px flex-1 bg-gradient-to-b from-blue-500/20 to-transparent" />
                                     )}
                                 </div>
                                 <div>
@@ -126,7 +133,7 @@ function About() {
                     </div>
 
                     {/* SKILLS */}
-                    <div className="box-border flex w-full flex-1 flex-col rounded-[20px] border border-white/[0.06] bg-[#0e1117] p-6 sm:p-8">
+                    <div className="box-border flex w-full flex-1 flex-col rounded-[20px] border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8">
                         <p className="mb-7 font-inter text-[11px] font-semibold uppercase tracking-[3px] text-accent">Tech Stack</p>
 
                         <div className="flex flex-col gap-6">
@@ -144,7 +151,7 @@ function About() {
                                         {group.skills.map((skill) => (
                                             <div
                                                 key={skill.name}
-                                                className="group flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-cyan-500/35 hover:bg-cyan-500/[0.08]"
+                                                className="group flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-blue-500/35 hover:bg-blue-500/[0.08]"
                                             >
                                                 <span className="flex items-center justify-center text-base leading-none">{skill.icon}</span>
                                                 <span className="font-inter text-xs font-medium text-neutral-400 transition-colors duration-200 group-hover:text-white">{skill.name}</span>
@@ -157,6 +164,7 @@ function About() {
                     </div>
 
                 </div>
+            </div>
             </div>
         </section>
     );

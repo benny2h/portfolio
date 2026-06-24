@@ -70,7 +70,7 @@ function Navbar({ scrollTo }) {
                 onClick={() => handleNavClick(id)}
                 className={`whitespace-nowrap px-1 py-2 font-syne text-xs font-semibold tracking-wide transition-all duration-200 sm:text-base ${
                     activeSection === id
-                        ? '-translate-y-px text-accent [text-shadow:0_0_12px_rgba(6,182,212,0.5)]'
+                        ? '-translate-y-px text-accent [text-shadow:0_0_12px_rgba(159,194,232,0.5)]'
                         : 'text-neutral-500 hover:text-neutral-300'
                 }`}
             >
@@ -83,8 +83,8 @@ function Navbar({ scrollTo }) {
         <nav
             className={`fixed inset-x-0 top-0 z-[1000] font-syne transition-all duration-300 ${
                 docked
-                    ? 'border-b border-cyan-500/10 bg-[#080b0f]/90 backdrop-blur-md'
-                    : 'border-b border-transparent bg-transparent'
+                    ? 'bg-[#000000]/90 backdrop-blur-md'
+                    : 'bg-transparent'
             }`}
         >
             <div className="flex items-center justify-center px-4 py-3.5 sm:px-10 sm:py-5">
@@ -96,7 +96,7 @@ function Navbar({ scrollTo }) {
             {/* scroll progress, shows position within the whole page */}
             <div className="h-0.5 w-full bg-white/5">
                 <div
-                    className="h-full bg-accent shadow-[0_0_8px_rgba(6,182,212,0.6)] transition-[width] duration-150 ease-out"
+                    className="h-full bg-accent shadow-[0_0_8px_rgba(159,194,232,0.6)] transition-[width] duration-150 ease-out"
                     style={{ width: `${pageProgress * 100}%` }}
                 />
             </div>
