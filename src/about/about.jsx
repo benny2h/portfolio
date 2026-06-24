@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import useInView from '../hooks/useInView';
 import RevealLine from '../components/revealLine';
 import {
@@ -11,17 +10,13 @@ import {
     SiPostgresql,
     SiTailwindcss,
     SiVercel, SiDocker, SiNodedotjs,
-    SiCloudflare, SiNetlify, SiPostman
+    SiCloudflare, SiFormspree, SiPostman
 } from 'react-icons/si';
 
 import {FaJava} from 'react-icons/fa';
 
-function About({setActiveSection}) {
+function About() {
     const [ref, inView] = useInView();
-
-    useEffect(() => {
-        if (inView) setActiveSection('about');
-    }, [inView, setActiveSection]);
 
     const timeline = [
         {
@@ -67,7 +62,7 @@ function About({setActiveSection}) {
                 {name: 'Docker', icon: <SiDocker color="#2496ed"/>},
                 {name: 'Vercel', icon: <SiVercel color="#ffffff"/>},
                 {name: 'Cloudflare', icon: <SiCloudflare color="#f38020"/>},
-                {name: 'Netlify', icon: <SiNetlify color="#00c7b7"/>},
+                {name: 'Formspree', icon: <SiFormspree color="#90fe66"/>},
                 {name: 'Cypress', icon: <SiCypress color="#ffffff"/>},
                 {name: 'Postman', icon: <SiPostman color="#ff6c37"/>},
             ],
