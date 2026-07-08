@@ -1,5 +1,4 @@
 import useInView from '../hooks/useInView';
-import useFlipRotation from '../hooks/useFlipRotation';
 import RevealLine from '../components/revealLine';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -31,21 +30,15 @@ const labelClasses = 'font-inter text-xs font-semibold uppercase tracking-wider 
 
 function Contact() {
     const [ref, inView] = useInView();
-    const rotation = useFlipRotation('kontakt');
 
     return (
         <section
             id="kontakt"
             ref={ref}
             className="relative box-border min-h-screen overflow-hidden bg-[#000000] px-5 pb-16 pt-28 font-syne sm:px-12 sm:pb-24 sm:pt-32 lg:px-20 lg:pt-36"
-            style={{ perspective: '1600px' }}
         >
-            <div className="pointer-events-none absolute -right-28 -top-36 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.08)_0%,transparent_70%)] sm:h-[420px] sm:w-[420px] lg:h-[520px] lg:w-[520px]" />
+            <div className="pointer-events-none absolute -right-28 -top-36 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.08)_0%,transparent_70%)] sm:h-[420px] sm:w-[420px] lg:h-[520px] lg:w-[520px]" />
 
-            <div
-                className="[backface-visibility:hidden] [transform-style:preserve-3d]"
-                style={{ transform: `rotateY(${rotation}deg)` }}
-            >
             <div
                 className="relative mx-auto w-full max-w-[1200px] transition-all duration-700 ease-out"
                 style={{
@@ -67,9 +60,9 @@ function Contact() {
                             href={card.href}
                             target={card.href.startsWith('http') ? '_blank' : undefined}
                             rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            className="group flex flex-col gap-4 rounded-[26px] border border-white/[0.06] bg-[#0a0a0a] p-7 no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:border-blue-500/35 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)]"
+                            className="group flex flex-col gap-4 rounded-[26px] border border-white/[0.06] bg-[#0a0a0a] p-7 no-underline transition-all duration-300 ease-out hover:-translate-y-1 hover:border-amber-500/35 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)]"
                         >
-                            <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/30 bg-blue-500/10 text-xl text-accent">
+                            <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/10 text-xl text-accent">
                                 {card.icon}
                             </span>
                             <span className="text-lg font-bold text-white">{card.label}</span>
@@ -98,12 +91,11 @@ function Contact() {
                     </div>
                     <button
                         type="submit"
-                        className="mt-2 self-start rounded-xl border border-white/10 bg-blue-500/[0.12] px-6 py-3 font-inter text-sm font-semibold text-accent transition-all duration-200 hover:-translate-y-0.5 hover:border-accent"
+                        className="mt-2 self-start rounded-xl border border-white/10 bg-amber-500/[0.12] px-6 py-3 font-inter text-sm font-semibold text-accent transition-all duration-200 hover:-translate-y-0.5 hover:border-accent"
                     >
                         Nachricht senden →
                     </button>
                 </form>
-            </div>
             </div>
         </section>
     );

@@ -1,6 +1,6 @@
 import useInView from '../hooks/useInView';
-import useFlipRotation from '../hooks/useFlipRotation';
 import RevealLine from '../components/revealLine';
+import bennyImg from '../assets/benny.png';
 import {
     SiAngular,
     SiTypescript,
@@ -18,7 +18,6 @@ import {FaJava} from 'react-icons/fa';
 
 function About() {
     const [ref, inView] = useInView();
-    const rotation = useFlipRotation('about');
 
     const timeline = [
         {
@@ -29,7 +28,7 @@ function About() {
             tag: 'Studium',
         },
         {
-            period: 'seit 02/2026',
+            period: 'seit 08/2025',
             title: 'Werkstudent Softwareentwicklung',
             place: 'IMPECT GmbH, Köln',
             detail: 'Softwarelösungen für Fußballdatenanalyse',
@@ -76,14 +75,9 @@ function About() {
             id="about"
             ref={ref}
             className="relative box-border min-h-screen overflow-hidden bg-[#000000] px-5 pb-16 pt-28 font-syne sm:px-12 sm:pb-24 sm:pt-32 lg:px-20 lg:pt-36"
-            style={{ perspective: '1600px' }}
         >
-            <div className="pointer-events-none absolute -bottom-24 -left-24 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.08)_0%,transparent_70%)] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.08)_0%,transparent_70%)] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]" />
 
-            <div
-                className="[backface-visibility:hidden] [transform-style:preserve-3d]"
-                style={{ transform: `rotateY(${rotation}deg)` }}
-            >
             <div
                 className="relative mx-auto w-full max-w-[1320px] transition-all duration-700 ease-out"
                 style={{
@@ -98,7 +92,24 @@ function About() {
                     <RevealLine inView={inView} delay={120}>Über mich</RevealLine>
                 </h2>
 
-                <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[460px_1fr] lg:gap-7">
+                <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[360px_420px_1fr] lg:gap-7">
+
+                    {/* PHOTO */}
+                    <div
+                        className="relative flex h-full min-h-[380px] flex-col items-center justify-end overflow-hidden rounded-[20px] border border-white/[0.06] bg-[#0a0a0a]"
+                        style={{
+                            opacity: inView ? 1 : 0,
+                            transform: inView ? 'translateY(0)' : 'translateY(16px)',
+                            transition: 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)',
+                        }}
+                    >
+                        <div className="pointer-events-none absolute inset-[-10%] -z-0 rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.16)_0%,transparent_70%)] blur-3xl" />
+                        <img
+                            src={bennyImg}
+                            alt="Benny Herdt"
+                            className="relative h-auto max-h-[460px] w-full translate-y-6 object-contain [filter:contrast(1.02)_brightness(1.02)] [mask-image:linear-gradient(to_bottom,black_85%,transparent_100%)] sm:translate-y-10"
+                        />
+                    </div>
 
                     {/* TIMELINE */}
                     <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-[#0a0a0a] p-7 sm:p-10">
@@ -114,11 +125,11 @@ function About() {
                                 }}
                             >
                                 <div className="flex shrink-0 flex-col items-center">
-                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border-[1.5px] border-blue-500/30 bg-blue-500/10 text-base">
+                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border-[1.5px] border-amber-500/30 bg-amber-500/10 text-base">
                                         {item.icon}
                                     </div>
                                     {i !== timeline.length - 1 && (
-                                        <div className="mt-2 w-px flex-1 bg-gradient-to-b from-blue-500/20 to-transparent" />
+                                        <div className="mt-2 w-px flex-1 bg-gradient-to-b from-amber-500/20 to-transparent" />
                                     )}
                                 </div>
                                 <div>
@@ -151,7 +162,7 @@ function About() {
                                         {group.skills.map((skill) => (
                                             <div
                                                 key={skill.name}
-                                                className="group flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-blue-500/35 hover:bg-blue-500/[0.08]"
+                                                className="group flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-2.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-amber-500/35 hover:bg-amber-500/[0.08]"
                                             >
                                                 <span className="flex items-center justify-center text-base leading-none">{skill.icon}</span>
                                                 <span className="font-inter text-xs font-medium text-neutral-400 transition-colors duration-200 group-hover:text-white">{skill.name}</span>
@@ -164,7 +175,6 @@ function About() {
                     </div>
 
                 </div>
-            </div>
             </div>
         </section>
     );

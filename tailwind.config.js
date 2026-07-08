@@ -9,7 +9,7 @@ module.exports = {
         mono: ['"DM Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
-        accent: '#9fc2e8',
+        accent: '#e6a558',
       },
       keyframes: {
         blink: {

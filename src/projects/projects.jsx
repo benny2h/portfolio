@@ -1,8 +1,22 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useInView from '../hooks/useInView';
-import useFlipRotation from '../hooks/useFlipRotation';
 import RevealLine from '../components/revealLine';
 import logo from '../assets/logo.png';
+
+/* Echter Screenshot (via `npm run screenshot:projects`), fällt bei fehlendem Bild auf die Mock-Vorschau zurück */
+function ProjectPreview({ src, alt, fallback }) {
+    const [broken, setBroken] = useState(false);
+    if (!src || broken) return fallback;
+    return (
+        <img
+            src={src}
+            alt={alt}
+            onError={() => setBroken(true)}
+            className="h-full w-full object-cover object-top"
+        />
+    );
+}
 
 /* Mini-Vorschau im Sport-Scorings-Look */
 function SportScoringsThumb() {
@@ -44,7 +58,6 @@ function BrowserWindowCard({ as: Tag = 'div', title, children, className = '', .
 
 function Projects() {
     const [ref, inView] = useInView();
-    const rotation = useFlipRotation('projects');
     const navigate = useNavigate();
 
     return (
@@ -52,14 +65,9 @@ function Projects() {
             id="projects"
             ref={ref}
             className="relative box-border min-h-screen overflow-hidden bg-[#000000] px-5 pb-16 pt-28 font-syne sm:px-12 sm:pb-24 sm:pt-32 lg:px-20 lg:pt-36"
-            style={{ perspective: '1600px' }}
         >
-            <div className="pointer-events-none absolute -right-28 -top-36 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.08)_0%,transparent_70%)] sm:h-[420px] sm:w-[420px] lg:h-[520px] lg:w-[520px]" />
+            <div className="pointer-events-none absolute -right-28 -top-36 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.08)_0%,transparent_70%)] sm:h-[420px] sm:w-[420px] lg:h-[520px] lg:w-[520px]" />
 
-            <div
-                className="[backface-visibility:hidden] [transform-style:preserve-3d]"
-                style={{ transform: `rotateY(${rotation}deg)` }}
-            >
             <div
                 className="relative mx-auto w-full max-w-[1200px] transition-all duration-700 ease-out"
                 style={{
@@ -89,11 +97,17 @@ function Projects() {
                             target="_blank"
                             rel="noopener noreferrer"
                             title="websbybenny.de"
-                            className="ring-accent/50 shadow-[0_30px_70px_-20px_rgba(159,194,232,0.5)] hover:ring-accent/80"
+                            className="ring-accent/50 shadow-[0_30px_70px_-20px_rgba(230,165,88,0.5)] hover:ring-accent/80"
                         >
-                            <div className="flex w-full items-center justify-center bg-[radial-gradient(circle_at_top,rgba(159,194,232,0.14),transparent_60%)]">
-                                <img src={logo} alt="Webs by Benny" className="h-16 w-16 object-contain" />
-                            </div>
+                            <ProjectPreview
+                                src="/projects/websbybenny.jpg"
+                                alt="websbybenny.de"
+                                fallback={
+                                    <div className="flex w-full items-center justify-center bg-[radial-gradient(circle_at_top,rgba(230,165,88,0.14),transparent_60%)]">
+                                        <img src={logo} alt="Webs by Benny" className="h-16 w-16 object-contain" />
+                                    </div>
+                                }
+                            />
                         </BrowserWindowCard>
                         <div className="mt-5">
                             <h3 className="m-0 mb-2 text-lg font-bold leading-tight text-white sm:text-xl">Webs by Benny</h3>
@@ -125,7 +139,11 @@ function Projects() {
                             className="cursor-pointer ring-white/10 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.5)] hover:ring-accent/40"
                             onClick={() => navigate('/sportScorings')}
                         >
-                            <SportScoringsThumb />
+                            <ProjectPreview
+                                src="/projects/sportscorings.jpg"
+                                alt="Sport Scorings"
+                                fallback={<SportScoringsThumb />}
+                            />
                         </BrowserWindowCard>
                         <div className="mt-5">
                             <h3 className="m-0 mb-2 text-lg font-bold leading-tight text-white sm:text-xl">Sport Scorings</h3>
@@ -141,7 +159,6 @@ function Projects() {
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </section>
     );

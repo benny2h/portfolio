@@ -116,8 +116,8 @@ export default function SportScorings() {
 
     return (
         <div className="relative flex h-screen overflow-hidden bg-[#000000] font-['DM_Sans',_system-ui,_sans-serif] text-white">
-            <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.10)_0%,transparent_70%)]" />
-            <div className="pointer-events-none absolute -bottom-40 -left-32 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(159,194,232,0.06)_0%,transparent_70%)]" />
+            <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.10)_0%,transparent_70%)]" />
+            <div className="pointer-events-none absolute -bottom-40 -left-32 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.06)_0%,transparent_70%)]" />
 
             {/* ═══ MOBILE BACKDROP ═══ */}
             {sidebarOpen && (
