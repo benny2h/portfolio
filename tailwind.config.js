@@ -10,6 +10,7 @@ module.exports = {
       },
       colors: {
         accent: '#e6a558',
+        pitch: '#34d399',
       },
       keyframes: {
         blink: {

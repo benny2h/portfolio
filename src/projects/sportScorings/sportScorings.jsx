@@ -5,7 +5,7 @@ import { Tabelle, Spiele, Torjaeger } from './sportScoringView';
 
 const LEAGUES_CACHE_KEY = 'sport_scoring_leagues';
 
-const selectClasses = 'cursor-pointer rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2 font-mono text-xs text-neutral-300 outline-none transition-colors hover:border-neutral-500 focus:border-accent';
+const selectClasses = 'cursor-pointer rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2 font-mono text-xs text-neutral-300 outline-none transition-colors hover:border-neutral-500 focus:border-pitch';
 
 export default function SportScorings() {
     const navigate = useNavigate();
@@ -116,8 +116,8 @@ export default function SportScorings() {
 
     return (
         <div className="relative flex h-screen overflow-hidden bg-[#000000] font-['DM_Sans',_system-ui,_sans-serif] text-white">
-            <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.10)_0%,transparent_70%)]" />
-            <div className="pointer-events-none absolute -bottom-40 -left-32 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(230,165,88,0.06)_0%,transparent_70%)]" />
+            <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.10)_0%,transparent_70%)]" />
+            <div className="pointer-events-none absolute -bottom-40 -left-32 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.06)_0%,transparent_70%)]" />
 
             {/* ═══ MOBILE BACKDROP ═══ */}
             {sidebarOpen && (
@@ -128,12 +128,15 @@ export default function SportScorings() {
             <aside className={`fixed inset-y-0 left-0 z-40 flex w-72 shrink-0 flex-col border-r border-white/[0.06] bg-[#0a0a0a] transition-transform duration-300 ease-out lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-4">
                     <button
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.06] text-accent transition-colors hover:bg-accent/10"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.06] text-pitch transition-colors hover:bg-pitch/10"
                         onClick={() => navigate('/')}
                         title="Zurück"
                     >
                         ←
                     </button>
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-pitch/15 text-base">
+                        ⚽
+                    </div>
                     <div className="min-w-0">
                         <p className="m-0 truncate text-sm font-bold tracking-tight text-white">Sport Scorings</p>
                         <p className="m-0 truncate font-mono text-[10px] uppercase tracking-wider text-neutral-600">OpenLigaDB</p>
@@ -148,7 +151,7 @@ export default function SportScorings() {
 
                 {leaguesLoading ? (
                     <div className="flex flex-1 items-center justify-center">
-                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-white/[0.06] border-t-accent" />
+                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-white/[0.06] border-t-pitch" />
                     </div>
                 ) : (
                     <div className="flex flex-1 flex-col overflow-y-auto px-5 py-5">
@@ -159,7 +162,7 @@ export default function SportScorings() {
                                     key={sport}
                                     className={`rounded-full px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-wider transition-colors ${
                                         selectedSport === sport
-                                            ? 'bg-accent/15 text-accent'
+                                            ? 'bg-pitch/15 text-pitch'
                                             : 'text-neutral-500 hover:bg-white/[0.06] hover:text-neutral-300'
                                     }`}
                                     onClick={() => handleSportChange(sport)}
@@ -193,7 +196,7 @@ export default function SportScorings() {
                                             key={l.leagueId}
                                             className={`truncate rounded-lg px-3 py-2 text-left text-[13px] font-medium transition-colors ${
                                                 selectedLeague?.leagueId === l.leagueId
-                                                    ? 'bg-accent/10 text-accent'
+                                                    ? 'bg-pitch/10 text-pitch'
                                                     : 'text-neutral-400 hover:bg-white/[0.04] hover:text-neutral-200'
                                             }`}
                                             onClick={() => { handleLeagueChange(l.leagueId); setSidebarOpen(false); }}
@@ -223,7 +226,7 @@ export default function SportScorings() {
                             <p className="m-0 truncate text-base font-bold tracking-tight text-white sm:text-lg">
                                 {leaguesLoading ? 'Lädt…' : leagueName}
                             </p>
-                            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-accent">
+                            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-pitch">
                                 <span>{selectedSport}</span>
                                 {selectedSeason && <>
                                     <span className="text-neutral-700">·</span>
@@ -244,7 +247,7 @@ export default function SportScorings() {
                                 key={m.id}
                                 className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-wider transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                                     mode === m.id
-                                        ? 'bg-accent text-[#0a0a0a]'
+                                        ? 'bg-pitch text-[#0a0a0a]'
                                         : 'bg-white/[0.04] text-neutral-400 hover:bg-white/[0.08] hover:text-neutral-200'
                                 }`}
                                 disabled={!selectedLeague}
@@ -269,7 +272,7 @@ export default function SportScorings() {
                         {mode === 'team' && (
                             <div className="flex items-center gap-2">
                                 <input
-                                    className="rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2 font-mono text-xs text-white outline-none transition-colors focus:border-accent"
+                                    className="rounded-lg border border-white/10 bg-[#0a0a0a] px-3 py-2 font-mono text-xs text-white outline-none transition-colors focus:border-pitch"
                                     type="text"
                                     placeholder="Teamname…"
                                     value={teamSearch}
@@ -277,7 +280,7 @@ export default function SportScorings() {
                                     onKeyDown={e => e.key === 'Enter' && fetchData()}
                                 />
                                 <button
-                                    className="rounded-lg border border-accent bg-accent/10 px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-accent transition-colors hover:bg-accent/20"
+                                    className="rounded-lg border border-pitch bg-pitch/10 px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-pitch transition-colors hover:bg-pitch/20"
                                     onClick={() => fetchData()}
                                 >
                                     Suchen
@@ -296,7 +299,7 @@ export default function SportScorings() {
                 )}
                 {loading && (
                     <div className="flex flex-1 flex-col items-center justify-center gap-3 px-8 py-20">
-                        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/[0.06] border-t-accent" />
+                        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/[0.06] border-t-pitch" />
                         <p className="m-0 font-mono text-xs uppercase tracking-wider text-neutral-600">Lädt Daten…</p>
                     </div>
                 )}
